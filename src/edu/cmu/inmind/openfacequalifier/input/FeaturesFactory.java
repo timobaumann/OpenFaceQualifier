@@ -10,7 +10,7 @@ import edu.cmu.inmind.openfacequalifier.FeatureType;
 
 public class FeaturesFactory {
 
-	final List<FeatureType> orderingOfFeatures;
+	private final List<FeatureType> orderingOfFeatures;
 	
 	private FeaturesFactory(List<FeatureType> orderingOfFeatures) {
 		this.orderingOfFeatures = orderingOfFeatures;
