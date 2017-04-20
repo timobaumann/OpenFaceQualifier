@@ -18,7 +18,7 @@ public class FeaturesFactory {
 	
 	public static FeaturesFactory newFeaturesFactoryFromLine(String line) {
 		List<FeatureType> orderingOfFeatures = new ArrayList<>();
-		for (String tok : line.trim().split(", ")) {
+		for (String tok : line.split(", ")) {
 			FeatureType ft = FeatureType.valueOf(tok);
 			assert ft != null;
 			orderingOfFeatures.add(ft);
@@ -26,10 +26,14 @@ public class FeaturesFactory {
 		return new FeaturesFactory(orderingOfFeatures);
 	}
 	
+	public int expectedFeatsPerLine() {
+		return orderingOfFeatures.size();
+	}
+	
 	public Map<FeatureType,Float> newFromLine(String line) {
 		EnumMap<FeatureType, Float> f = new EnumMap<>(FeatureType.class);
 		Iterator<FeatureType> featIt = orderingOfFeatures.iterator();
-		for (String tok : line.trim().split(", ")) {
+		for (String tok : line.split(", ")) {
 			float value = Float.parseFloat(tok);
 			f.put(featIt.next(), value);
 		}

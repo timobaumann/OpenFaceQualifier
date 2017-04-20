@@ -10,7 +10,7 @@ import edu.cmu.inmind.openfacequalifier.output.VHTOutput;
 
 public class Startup {
 	// the main method should probably be replaced by some MUF integration code
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) throws IOException, InterruptedException {
 		OpenFaceInput ofi = new ProcessInput("rtsp:123.234.345.456:1234/some/url");
 		EventDetector ed = new RuleBasedEventDetector(ofi);
 		ed.addListener(new VHTOutput(/*some parameters?*/));

@@ -18,13 +18,17 @@ public class ProcessInput implements OpenFaceInput {
 	BufferedReader ofInput;
 	FeaturesFactory featFac;
 	
-	public ProcessInput(String fileOrURL) throws IOException {
+	public ProcessInput(String fileOrURL) throws IOException, InterruptedException {
 		String binaryName = System.getProperty("openface.featureExtraction.binaryName", "/home/timo/uni/software/OpenFace/OpenFace/build/bin/FeatureExtraction");
 		File tmpFile = File.createTempFile("OpenFace", ".out");
 		ProcessBuilder pb = new ProcessBuilder(binaryName, "-q", "-f", fileOrURL, "-of", tmpFile.toString());
 		pb.inheritIO();
 		openFace = pb.start();
+		Thread.sleep(5000);
 		ofInput = new BufferedReader(new FileReader(tmpFile));
+		ofInput.mark(8096);
+		String line = ofInput.readLine();
+		featFac = FeaturesFactory.newFeaturesFactoryFromLine(line);
 	}
 
 	@Override
@@ -32,14 +36,11 @@ public class ProcessInput implements OpenFaceInput {
 		Map<FeatureType,Float> f = null;
 		try {
 			String line = ofInput.readLine();
-			if (line != null && line.startsWith("frame")) {
-				assert featFac == null : "I was not expecting this line in the middle";
-				featFac = FeaturesFactory.newFeaturesFactoryFromLine(line);
-				line = ofInput.readLine();
-			}
-			assert featFac != null;
-			if (line != null)
+			if (line != null) {
+				System.err.println(line.length());
+				assert !line.startsWith("frame") : "I was not expecting this line in the middle";
 				f = featFac.newFromLine(line);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			ofInput = null;
