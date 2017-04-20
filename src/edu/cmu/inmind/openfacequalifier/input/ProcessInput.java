@@ -15,6 +15,7 @@ public class ProcessInput implements OpenFaceInput {
 
 	Process openFace;
 	BufferedReader ofInput;
+	FeaturesFactory featFac;
 	
 	public ProcessInput(String fileOrURL) throws IOException {
 		File tmpFile = File.createTempFile("OpenFace", ".out");
@@ -30,10 +31,13 @@ public class ProcessInput implements OpenFaceInput {
 		try {
 			String line = ofInput.readLine();
 			if (line != null && line.startsWith("frame")) {
+				assert featFac == null : "I was not expecting this line in the middle";
+				featFac = FeaturesFactory.newFeaturesFactoryFromLine(line);
 				line = ofInput.readLine();
 			}
+			assert featFac != null;
 			if (line != null)
-				f = Features.newFromLine(line);
+				f = featFac.newFromLine(line);
 		} catch (IOException e) {
 			e.printStackTrace();
 			ofInput = null;

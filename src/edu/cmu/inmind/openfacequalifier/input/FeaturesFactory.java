@@ -4,7 +4,7 @@ import edu.cmu.inmind.openfacequalifier.Features;
 
 public class FeaturesFactory {
 	
-	FeaturesFactory newFeaturesFactoryFromLine(String line) {
+	public static FeaturesFactory newFeaturesFactoryFromLine(String line) {
 		return null;
 	}
 	
