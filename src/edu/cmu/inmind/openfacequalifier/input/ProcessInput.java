@@ -1,5 +1,7 @@
 package edu.cmu.inmind.openfacequalifier.input;
 
+import edu.cmu.inmind.openfacequalifier.Features;
+
 /** 
  * this guy would 
  */
@@ -10,7 +12,7 @@ public class ProcessInput implements OpenFaceInput {
 	}
 
 	@Override
-	public int[] getFeaturesForNextFrame() {
+	public Features getFeaturesForNextFrame() {
 		return null;
 	}
 
