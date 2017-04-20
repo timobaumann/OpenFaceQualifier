@@ -1,4 +1,4 @@
-package edu.cmu.inmind.openfacequalifier.eventDetector;
+package edu.cmu.inmind.openfacequalifier.input;
 
 import edu.cmu.inmind.openfacequalifier.Features;
 
