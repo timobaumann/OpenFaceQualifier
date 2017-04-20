@@ -1,6 +1,10 @@
 package edu.cmu.inmind.openfacequalifier.input;
 
+import edu.cmu.inmind.openfacequalifier.Features;
+
 public interface OpenFaceInput {
 
-	int[] getFeaturesForNextFrame();
+	Features getFeaturesForNextFrame();
+
+	boolean hasMoreFrames();
 }
