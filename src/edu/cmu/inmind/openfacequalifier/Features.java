@@ -1,9 +1,7 @@
 package edu.cmu.inmind.openfacequalifier;
 
-public class Features {
+import java.util.Map;
 
-	public static Features newFromLine(String line) {
-		return null;
-	}
-
+public interface Features extends Map<FeatureType,Float> {
+	
 }
