@@ -19,8 +19,9 @@ public class ProcessInput implements OpenFaceInput {
 	FeaturesFactory featFac;
 	
 	public ProcessInput(String fileOrURL) throws IOException {
+		String binaryName = System.getProperty("openface.featureExtraction.binaryName", "/home/timo/uni/software/OpenFace/OpenFace/build/bin/FeatureExtraction");
 		File tmpFile = File.createTempFile("OpenFace", ".out");
-		ProcessBuilder pb = new ProcessBuilder("FeatureExtraction", "-q", "-f", fileOrURL, "-of", tmpFile.toString());
+		ProcessBuilder pb = new ProcessBuilder(binaryName, "-q", "-f", fileOrURL, "-of", tmpFile.toString());
 		pb.inheritIO();
 		openFace = pb.start();
 		ofInput = new BufferedReader(new FileReader(tmpFile));
