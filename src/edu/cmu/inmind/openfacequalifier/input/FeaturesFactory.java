@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import edu.cmu.inmind.openfacequalifier.FeatureType;
-import edu.cmu.inmind.openfacequalifier.Features;
 
 public class FeaturesFactory {
 
@@ -26,14 +26,14 @@ public class FeaturesFactory {
 		return new FeaturesFactory(orderingOfFeatures);
 	}
 	
-	public Features newFromLine(String line) {
+	public Map<FeatureType,Float> newFromLine(String line) {
 		EnumMap<FeatureType, Float> f = new EnumMap<>(FeatureType.class);
 		Iterator<FeatureType> featIt = orderingOfFeatures.iterator();
 		for (String tok : line.trim().split(", ")) {
 			float value = Float.parseFloat(tok);
 			f.put(featIt.next(), value);
 		}
-		return (Features) f;
+		return f;
 	}
 
 }

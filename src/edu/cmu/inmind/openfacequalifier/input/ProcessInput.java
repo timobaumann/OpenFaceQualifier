@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
-import edu.cmu.inmind.openfacequalifier.Features;
+import edu.cmu.inmind.openfacequalifier.FeatureType;
 
 /** 
  * start OpenFace as a separate process which writes to a temporary file
@@ -26,8 +27,8 @@ public class ProcessInput implements OpenFaceInput {
 	}
 
 	@Override
-	public Features getFeaturesForNextFrame() {
-		Features f = null;
+	public Map<FeatureType,Float> getFeaturesForNextFrame() {
+		Map<FeatureType,Float> f = null;
 		try {
 			String line = ofInput.readLine();
 			if (line != null && line.startsWith("frame")) {

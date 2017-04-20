@@ -1,10 +1,12 @@
 package edu.cmu.inmind.openfacequalifier.input;
 
-import edu.cmu.inmind.openfacequalifier.Features;
+import java.util.Map;
+
+import edu.cmu.inmind.openfacequalifier.FeatureType;
 
 public interface OpenFaceInput {
 
-	Features getFeaturesForNextFrame();
+	Map<FeatureType,Float> getFeaturesForNextFrame();
 
 	boolean hasMoreFrames();
 }

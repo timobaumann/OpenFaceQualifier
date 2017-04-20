@@ -2,9 +2,10 @@ package edu.cmu.inmind.openfacequalifier.eventDetector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import edu.cmu.inmind.openfacequalifier.Event;
-import edu.cmu.inmind.openfacequalifier.Features;
+import edu.cmu.inmind.openfacequalifier.FeatureType;
 import edu.cmu.inmind.openfacequalifier.input.OpenFaceInput;
 import edu.cmu.inmind.openfacequalifier.output.EventOutput;
 
@@ -25,7 +26,7 @@ public abstract class EventDetector {
 	 * at present, this just produces output every 1 second and null otherwise
 	 * @return null if no event occurs, return an actual event when something has changed
 	 */
-	abstract Event consumeFrame(Features f);
+	abstract Event consumeFrame(Map<FeatureType,Float> f);
 	
 	private void notifyListeners(Event e) {
 		for (EventOutput eo : listeners) {
