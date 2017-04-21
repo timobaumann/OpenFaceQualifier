@@ -28,4 +28,9 @@ public class Event {
 		gaze_at=gaze;
 	}
 	
+	@Override
+	public String toString() {
+		return "Event smile: " + getSmile() + ", gaze: " + getGaze(); 
+	}
+	
 }
