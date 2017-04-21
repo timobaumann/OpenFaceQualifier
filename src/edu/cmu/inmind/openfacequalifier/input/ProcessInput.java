@@ -1,6 +1,7 @@
 package edu.cmu.inmind.openfacequalifier.input;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /** 
@@ -11,14 +12,20 @@ public class ProcessInput extends FileInput {
 
 	Process openFace;
 	
-	public ProcessInput(String fileOrURL) throws IOException, InterruptedException {
+	public ProcessInput(String fileOrURL) throws IOException {
 		String binaryName = System.getProperty("openface.featureExtraction.binaryName", "/home/timo/uni/software/OpenFace/OpenFace/build/bin/FeatureExtraction");
 		File tmpFile = File.createTempFile("OpenFace", ".out");
-		tmpFile.deleteOnExit();
-		ProcessBuilder pb = new ProcessBuilder(binaryName, "-q", "-f", fileOrURL, "-of", tmpFile.toString());
+		new FileOutputStream(tmpFile).close(); // make sure the tmpFile exists (and is empty)
+		//tmpFile.deleteOnExit(); // clean up once we're done
+		ProcessBuilder pb = new ProcessBuilder(binaryName, "-f", fileOrURL, "-of", tmpFile.toString()); // "-q", 
 		pb.inheritIO();
 		openFace = pb.start();
-		Thread.sleep(15000);
+		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+			@Override
+			public void run() {
+				openFace.destroyForcibly();
+			}
+		}));
 		openFile(tmpFile.toString());
 	}
 

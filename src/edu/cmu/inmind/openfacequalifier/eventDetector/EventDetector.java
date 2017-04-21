@@ -7,6 +7,7 @@ import java.util.Map;
 import edu.cmu.inmind.openfacequalifier.Event;
 import edu.cmu.inmind.openfacequalifier.FeatureType;
 import edu.cmu.inmind.openfacequalifier.input.OpenFaceInput;
+import edu.cmu.inmind.openfacequalifier.output.CSVOutput;
 import edu.cmu.inmind.openfacequalifier.output.EventOutput;
 
 public abstract class EventDetector {
@@ -35,15 +36,12 @@ public abstract class EventDetector {
 	}
 	
 	public void run() {
+		CSVOutput out = new CSVOutput(System.err);
 		while (ofi.hasMoreFrames()) {
-			Event e = consumeFrame(ofi.getFeaturesForNextFrame());
+			Map<FeatureType, Float> f = ofi.getFeaturesForNextFrame();
+			out.consumeFrame(f);
+			Event e = consumeFrame(f);
 			notifyListeners(e);
-			try {
-				// we sleep a little to avoid race-conditions where java is quicker than C.
-				Thread.sleep(30);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
 		}
 	}
 	

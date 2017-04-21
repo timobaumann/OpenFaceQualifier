@@ -12,7 +12,7 @@ import edu.cmu.inmind.openfacequalifier.output.CSVOutput;
 
 public class TestFileInput {
 
-	@Test
+	@Test(timeout = 10000)
 	public void test() throws IOException, InterruptedException {
 		OpenFaceInput ofi = new FileInput(this.getClass().getResource("timo1.openface").toString().replaceFirst("^file:", ""));
 		//OpenFaceInput ofi = new ProcessInput("rtsp://34.203.204.136:8554/live/myStreamcdf20e73589e8763");
