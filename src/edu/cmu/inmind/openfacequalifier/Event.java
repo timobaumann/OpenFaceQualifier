@@ -9,4 +9,23 @@ package edu.cmu.inmind.openfacequalifier;
 public class Event {
 
 	
+	private boolean smile = false;
+	private boolean gaze_at = false;
+	
+	public boolean getSmile(){
+		return smile;
+	}
+	
+	public void setSmile(boolean sm){
+		smile = sm;
+	}
+	
+	public boolean getGaze(){
+		return gaze_at;
+	}
+	
+	public void getSmile(boolean gaze){
+		gaze_at=gaze;
+	}
+	
 }

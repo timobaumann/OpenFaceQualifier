@@ -40,7 +40,7 @@ public abstract class EventDetector {
 			notifyListeners(e);
 			try {
 				// we sleep a little to avoid race-conditions where java is quicker than C.
-				Thread.sleep(5);
+				Thread.sleep(30);
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
