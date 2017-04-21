@@ -1,6 +1,7 @@
 package edu.cmu.inmind.openfacequalifier.input;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.List;
@@ -31,13 +32,13 @@ public class FeaturesFactory {
 	}
 	
 	public Map<FeatureType,Float> newFromLine(String line) {
-		EnumMap<FeatureType, Float> f = new EnumMap<>(FeatureType.class);
+		final EnumMap<FeatureType, Float> f = new EnumMap<>(FeatureType.class);
 		Iterator<FeatureType> featIt = orderingOfFeatures.iterator();
 		for (String tok : line.split(", ")) {
 			float value = Float.parseFloat(tok);
 			f.put(featIt.next(), value);
 		}
-		return f;
+		return Collections.unmodifiableMap(f);
 	}
 
 }
