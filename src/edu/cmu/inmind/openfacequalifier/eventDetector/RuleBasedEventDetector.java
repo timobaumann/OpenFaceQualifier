@@ -18,8 +18,8 @@ public class RuleBasedEventDetector extends EventDetector {
 
 	@Override
 	Event consumeFrame(Map<FeatureType,Float> f) {
-		// TODO Auto-generated method stub
-		
+		assert f != null;
+		assert f.containsKey(FeatureType.AU12_r);
 		wasSmiling = e.getSmile();
 		
 		if (f.get(FeatureType.AU12_r)>0.5){

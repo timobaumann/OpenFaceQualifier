@@ -107,10 +107,11 @@ public class FileInput extends TailerListenerAdapter implements OpenFaceInput {
 		cancelTimeout();
 		tt = new TimerTask() {
 			@Override public void run() {
-				System.err.println("now shutting down");
+				System.err.println("timeout on tailer reached, shutting down");
 				destroyForcibly();
 			}
 		};
+		//System.err.println("setting a timeout");
 		t.schedule(tt, 500); // our timeout is 500 ms
 	}
 	

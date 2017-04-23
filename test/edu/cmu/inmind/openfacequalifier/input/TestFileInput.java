@@ -21,7 +21,6 @@ public class TestFileInput {
 			Map<FeatureType,Float> f = ofi.getFeaturesForNextFrame();
 			if (f != null)
 				out.consumeFrame(f);
-			Thread.sleep(5);
 		}
 	}
 

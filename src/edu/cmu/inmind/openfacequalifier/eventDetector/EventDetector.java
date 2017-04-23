@@ -36,12 +36,14 @@ public abstract class EventDetector {
 	}
 	
 	public void run() {
-		CSVOutput out = new CSVOutput(System.err);
+		//CSVOutput out = new CSVOutput(System.err);
 		while (ofi.hasMoreFrames()) {
 			Map<FeatureType, Float> f = ofi.getFeaturesForNextFrame();
-			out.consumeFrame(f);
-			Event e = consumeFrame(f);
-			notifyListeners(e);
+			//out.consumeFrame(f);
+			if (f != null) {
+				Event e = consumeFrame(f);
+				notifyListeners(e);
+			}
 		}
 	}
 	
