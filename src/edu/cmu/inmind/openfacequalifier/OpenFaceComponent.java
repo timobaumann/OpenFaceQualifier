@@ -11,6 +11,7 @@ import edu.cmu.inmind.openfacequalifier.eventDetector.RuleBasedEventDetector;
 import edu.cmu.inmind.openfacequalifier.input.OpenFaceInput;
 import edu.cmu.inmind.openfacequalifier.input.ProcessInput;
 import edu.cmu.inmind.openfacequalifier.output.ConsoleOutput;
+import edu.cmu.inmind.openfacequalifier.output.VHTOutput;
 
 @BlackboardSubscription(messages={"MSG_openFaceStartup"})
 @StatefulComponent
@@ -29,7 +30,7 @@ public class OpenFaceComponent extends PluggableComponent {
 		try {
 			ofi = new ProcessInput(URL);
 			EventDetector ed = new RuleBasedEventDetector(ofi);
-			ed.addListener(new ConsoleOutput(/*some parameters?*/));
+			ed.addListener(new VHTOutput(/*some parameters?*/));
 			ed.run();
 		} catch (IOException e) {
 			e.printStackTrace();
