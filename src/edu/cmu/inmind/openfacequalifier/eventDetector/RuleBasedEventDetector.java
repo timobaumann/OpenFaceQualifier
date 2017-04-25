@@ -29,10 +29,10 @@ public class RuleBasedEventDetector extends EventDetector {
 		}
 		e.setSmile(isSmiling);
 		
-		if (isSmiling && !wasSmiling){
+		if ((isSmiling && !wasSmiling) || (!isSmiling && wasSmiling)){
 			return e;		
 		} else {
-			return e;
+			return null;
 		}
 	
 	}

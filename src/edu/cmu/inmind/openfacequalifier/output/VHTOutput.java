@@ -17,8 +17,9 @@ public class VHTOutput implements EventOutput {
 	public void nextEvent(Event e) {
 		//System.out.println("isSmiling " + e.getSmile());
 		//System.err.println("not sending to VHT");
-			
-		sender.sendMessage("0 " + e.getSmile());
+		if (e != null) {
+		sender.sendMessage("vrMultisense 0 " + e.getSmile() + " 0.939988519996405 false false neutral 1.0 true");
+		}
 		//sender.sendMessage("vrTest");
 		//e.toString();
 	}
