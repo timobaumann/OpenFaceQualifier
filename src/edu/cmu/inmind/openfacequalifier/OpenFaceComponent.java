@@ -10,7 +10,6 @@ import edu.cmu.inmind.openfacequalifier.eventDetector.EventDetector;
 import edu.cmu.inmind.openfacequalifier.eventDetector.RuleBasedEventDetector;
 import edu.cmu.inmind.openfacequalifier.input.OpenFaceInput;
 import edu.cmu.inmind.openfacequalifier.input.ProcessInput;
-import edu.cmu.inmind.openfacequalifier.output.ConsoleOutput;
 import edu.cmu.inmind.openfacequalifier.output.VHTOutput;
 
 @BlackboardSubscription(messages={"MSG_openFaceStartup"})

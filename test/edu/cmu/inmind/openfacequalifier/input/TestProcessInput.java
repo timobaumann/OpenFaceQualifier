@@ -36,4 +36,16 @@ public class TestProcessInput {
 		}
 	}
 
+	@Test(timeout = 70000)
+	public void testJustine() throws IOException {
+		OpenFaceInput ofi = new ProcessInput(this.getClass().getResource("justine2.mp4").toString());
+		//OpenFaceInput ofi = new ProcessInput("rtsp://34.203.204.136:8554/live/myStream54201342a4cfb96d");
+		CSVOutput out = new CSVOutput(System.err);
+		while (ofi.hasMoreFrames()) {
+			Map<FeatureType,Float> f = ofi.getFeaturesForNextFrame();
+			if (f != null)
+				out.consumeFrame(f);
+		}
+	}
+
 }
